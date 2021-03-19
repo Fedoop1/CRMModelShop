@@ -24,25 +24,25 @@ namespace crmUI
 
         private void ProductMenu_Click(object sender, EventArgs e)
         {
-            var catalogProduct = new Catalog<Product>(database.Products);
+            var catalogProduct = new Catalog<Product>(database.Products, database);
             catalogProduct.Show();
         }
 
         private void SellerMenu_Click(object sender, EventArgs e)
         {
-            var catalogSeller = new Catalog<Seller>(database.Sellers);
+            var catalogSeller = new Catalog<Seller>(database.Sellers, database);
             catalogSeller.Show();
         }
 
         private void CustomerMenu_Click(object sender, EventArgs e)
         {
-            var catalogCustomer = new Catalog<Customer>(database.Customers);
+            var catalogCustomer = new Catalog<Customer>(database.Customers, database);
             catalogCustomer.Show();
         }
 
         private void BillMenu_Click(object sender, EventArgs e)
         {
-            var catalogBill = new Catalog<Bill>(database.Bills);
+            var catalogBill = new Catalog<Bill>(database.Bills, database);
             catalogBill.Show();
         }
 
@@ -59,13 +59,24 @@ namespace crmUI
 
         private void SellerAddMenu_Click(object sender, EventArgs e)
         {
-            //var SellerForm = new SellerForm;
+            var SellerForm = new SellerForm();
 
-            //if (SellerForm.ShowDialog() == DialogResult.OK)
-            //{
-            //    database.Sellers.Add(SellerForm);
-            //    database.SaveChanges();
-            //}
+            if (SellerForm.ShowDialog() == DialogResult.OK)
+            {
+                database.Sellers.Add(SellerForm.seller);
+                database.SaveChanges();
+            }
+        }
+
+        private void ProductAddMenu_Click(object sender, EventArgs e)
+        {
+            var ProductForm = new ProductForm();
+
+            if (ProductForm.ShowDialog() == DialogResult.OK)
+            {
+                database.Products.Add(ProductForm.product);
+                database.SaveChanges();
+            }
         }
     }
 }

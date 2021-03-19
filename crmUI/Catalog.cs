@@ -1,4 +1,5 @@
 ﻿using crmBI;
+using crmBI.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,11 +16,14 @@ namespace crmUI
     public partial class Catalog<T> : Form
         where T : class
     {
-        public Catalog(DbSet<T> set)
+
+        CrmContext db;
+        public Catalog(DbSet<T> set, CrmContext db)
         {
             InitializeComponent();
+            this.db = db;
+            set.Load();
             dataGridView.DataSource = set.Local.ToBindingList();
-            dataGridView.Update();
         }
 
         private void Catalog_Load(object sender, EventArgs e)
