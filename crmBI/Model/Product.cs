@@ -18,5 +18,20 @@ namespace crmBI
         {
             return $"{Name} - {Price}.";
         }
+
+        public override int GetHashCode()
+        {
+            return this.ProductId;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is Product product)
+            {
+                return this.ProductId == product.ProductId;
+            }
+
+            return false;
+        }
     }
 }

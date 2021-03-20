@@ -20,11 +20,21 @@ namespace crmUI
             InitializeComponent();
         }
 
+        public CustomerForm(Customer customer) : this()
+        {
+            this.customer = customer;
+            nameBox.Text = customer.Name;
+        }
+
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if(nameBox.Text != null)
+            if(customer is null)
             {
                 customer = new Customer() { Name = nameBox.Text };
+            }
+            else
+            {
+                customer.Name = nameBox.Text;
             }
 
             Close();

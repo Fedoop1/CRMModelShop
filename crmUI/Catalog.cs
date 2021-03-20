@@ -18,10 +18,12 @@ namespace crmUI
     {
 
         CrmContext db;
+        DbSet set;
         public Catalog(DbSet<T> set, CrmContext db)
         {
             InitializeComponent();
             this.db = db;
+            this.set = set;
             set.Load();
             dataGridView.DataSource = set.Local.ToBindingList();
         }

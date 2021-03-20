@@ -20,11 +20,22 @@ namespace crmUI
             InitializeComponent();
         }
 
+        public ProductForm(Product product) : this()
+        {
+            this.product = product;
+        }
+
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if(nameBox.Text != null && numericCount.Value != decimal.Zero && numericPrice.Value != decimal.Zero)
+            if(product is null)
             {
                 product = new Product() { Name = nameBox.Text, Count = Convert.ToInt32(numericCount.Value), Price = numericPrice.Value };
+            }
+            else
+            {
+                product.Name = nameBox.Text;
+                product.Price = numericPrice.Value;
+                product.Count = Convert.ToInt32(numericCount.Value);
             }
 
             Close();
