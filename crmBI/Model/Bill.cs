@@ -13,7 +13,6 @@ namespace crmBI
         public int CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Seller Seller { get; set; }
-
         public ICollection<Sell> Sells { get; set; }
         public DateTime Date { get; set; }
 

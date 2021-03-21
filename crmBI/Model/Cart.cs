@@ -9,9 +9,9 @@ namespace crmBI.Model
 {
     public class Cart : IEnumerable
     {
-        private Customer Customer;
+        public Customer Customer;
 
-        private Dictionary<Product, int> products = new Dictionary<Product, int>();
+        public Dictionary<Product, int> products = new Dictionary<Product, int>();
         public Cart(Customer customer)
         {
             this.Customer = customer;
@@ -19,7 +19,7 @@ namespace crmBI.Model
 
         public void Add(Product product)
         {
-            if(products.TryGetValue(product, out int count))
+            if (products.TryGetValue(product, out int count))
             {
                 products[product] = ++count;
                 return;
@@ -48,5 +48,6 @@ namespace crmBI.Model
 
             return productList;
         }
+
     }
 }
