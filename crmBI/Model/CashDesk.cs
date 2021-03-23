@@ -15,6 +15,8 @@ namespace crmBI.Model
         public bool isModel;
         int exitCount = 0;
         CrmContext db = new CrmContext();
+        public int Count => queue.Count;
+
         public CashDesk(Seller seller, int number)
         {
             this.seller = seller;
@@ -33,8 +35,12 @@ namespace crmBI.Model
         }
         public decimal Dequeue()
         {
-            Cart cart = queue.Dequeue();
             decimal sum = 0;
+
+            if (queue.Count == 0) { return sum; }
+
+            Cart cart = queue.Dequeue();
+            
 
             if (cart != null)
             {
