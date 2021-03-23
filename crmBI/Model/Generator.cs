@@ -48,7 +48,7 @@ namespace crmBI.Model
 
             for (int iterration = 0; iterration < count; iterration++)
             {
-                var product = new Product() { Name = GetRandomText(), Count = rnd.Next(10,1000), Price = Convert.ToDecimal(rnd.Next(1, 15) + rnd.NextDouble()), ProductId = Products.Count};
+                var product = new Product() { Name = GetRandomText(), Count = rnd.Next(10,1000), Price = Math.Round(Convert.ToDecimal(rnd.Next(1, 15) + rnd.NextDouble()), 2), ProductId = Products.Count};
                 result.Add(product);
                 Products.Add(product);
             }
@@ -63,6 +63,18 @@ namespace crmBI.Model
             for (int iterration = 0; iterration < count; iterration++)
             {
                 result.Add(Products[rnd.Next(Products.Count - 1)]);
+            }
+
+            return result;
+        }
+
+        public List<Customer> GetRandomCustomers(int countMin, int countMax)
+        {
+            List<Customer> result = new List<Customer>();
+            int count = rnd.Next(countMin, countMax);
+            for (int iterration = 0; iterration < count; iterration++)
+            {
+                result.Add(Customers[rnd.Next(Customers.Count - 1)]);
             }
 
             return result;

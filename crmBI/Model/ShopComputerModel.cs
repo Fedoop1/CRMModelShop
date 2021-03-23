@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace crmBI.Model
 {
-    class ShopComputerModel
+    public class ShopComputerModel
     {
         Generator Generator = new Generator();
 
@@ -35,14 +35,13 @@ namespace crmBI.Model
 
             for (int cashDesk = 0; cashDesk < 3; cashDesk++)
             {
-                CashDesks.Add(new CashDesk(Sellers.Dequeue(), CashDesks.Count));
+                CashDesks.Add(new CashDesk(Sellers.Dequeue(), CashDesks.Count) { isModel = true, maxLenght = 20 });
             }
         }
 
         public void Start()
         {
-            var customers = Generator.GenNewCustomers(10);
-
+            var customers = Generator.GetRandomCustomers(10, 15);
             var carts = new List<Cart>();
 
             foreach (var customer in customers)
@@ -57,14 +56,14 @@ namespace crmBI.Model
                 carts.Add(cart);
             }
 
-            while(customers.Count > 0)
+            while(carts.Count > 0)
             {
                 CashDesk desk = CashDesks[rnd.Next(CashDesks.Count - 1)];
                 desk.Add(carts[0]);
                 carts.RemoveAt(0);
             }
 
-            while(true)
+            while(CashDesks.Any(x=> x.Count > 0))
             {
                 var desk = CashDesks[rnd.Next(CashDesks.Count - 1)];
                 desk.Dequeue();
