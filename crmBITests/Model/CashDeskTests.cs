@@ -34,8 +34,8 @@ namespace crmBI.Model.Tests
             cart2.Add(product2);
             cart2.Add(product1);
 
-            cashDesk.Add(cart1);
-            cashDesk.Add(cart2);
+            cashDesk.Enqueue(cart1);
+            cashDesk.Enqueue(cart2);
 
             decimal result1 = cashDesk.Dequeue();
             decimal result2 = cashDesk.Dequeue();

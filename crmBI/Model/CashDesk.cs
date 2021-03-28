@@ -16,13 +16,14 @@ namespace crmBI.Model
         int exitCount = 0;
         CrmContext db = new CrmContext();
         public int Count => queue.Count;
+        public event EventHandler<Bill> BillOut;
 
         public CashDesk(Seller seller, int number)
         {
             this.seller = seller;
             this.number = number;
         }
-        public void Add(Cart cart)
+        public void Enqueue(Cart cart)
         {
             if (queue.Count < maxLenght)
             {
@@ -44,13 +45,14 @@ namespace crmBI.Model
 
             if (cart != null)
             {
-                Bill bill = new Bill 
-                { 
+                Bill bill = new Bill
+                {
                     Customer = cart.Customer,
                     Date = DateTime.Now,
                     Seller = this.seller,
                     CustomerId = cart.Customer.CustomerId,
-                    SellerId = seller.SellerId 
+                    SellerId = seller.SellerId,
+                    Price = sum
                 };
 
                 if (!isModel)
@@ -73,11 +75,15 @@ namespace crmBI.Model
                     }
                 }
 
+                bill.Price = sum;
+
                 if(!isModel)
                 {
                     db.Sells.AddRange(sells);
                     db.SaveChanges();
                 }
+
+                BillOut?.Invoke(this, bill);
             }
 
             return sum;

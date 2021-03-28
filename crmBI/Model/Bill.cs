@@ -15,6 +15,7 @@ namespace crmBI
         public virtual Seller Seller { get; set; }
         public ICollection<Sell> Sells { get; set; }
         public DateTime Date { get; set; }
+        public decimal Price { get; set; }
 
         public override string ToString()
         {
