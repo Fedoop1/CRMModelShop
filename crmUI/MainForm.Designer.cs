@@ -33,19 +33,21 @@ namespace crmUI
             this.menuEntity = new System.Windows.Forms.MenuStrip();
             this.EntityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ProductMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.добавитьToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.продавецToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.добавитьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.покупательToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.добавитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.чекToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.добавитьToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.моделированиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuEntity.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuEntity
             // 
             this.menuEntity.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.EntityToolStripMenuItem});
+            this.EntityToolStripMenuItem,
+            this.моделированиеToolStripMenuItem});
             this.menuEntity.Location = new System.Drawing.Point(0, 0);
             this.menuEntity.Name = "menuEntity";
             this.menuEntity.Size = new System.Drawing.Size(800, 24);
@@ -72,6 +74,13 @@ namespace crmUI
             this.ProductMenu.Text = "Товар";
             this.ProductMenu.Click += new System.EventHandler(this.ProductMenu_Click);
             // 
+            // добавитьToolStripMenuItem2
+            // 
+            this.добавитьToolStripMenuItem2.Name = "добавитьToolStripMenuItem2";
+            this.добавитьToolStripMenuItem2.Size = new System.Drawing.Size(126, 22);
+            this.добавитьToolStripMenuItem2.Text = "Добавить";
+            this.добавитьToolStripMenuItem2.Click += new System.EventHandler(this.ProductAddMenu_Click);
+            // 
             // продавецToolStripMenuItem
             // 
             this.продавецToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -84,7 +93,7 @@ namespace crmUI
             // добавитьToolStripMenuItem1
             // 
             this.добавитьToolStripMenuItem1.Name = "добавитьToolStripMenuItem1";
-            this.добавитьToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.добавитьToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
             this.добавитьToolStripMenuItem1.Text = "Добавить";
             this.добавитьToolStripMenuItem1.Click += new System.EventHandler(this.SellerAddMenu_Click);
             // 
@@ -100,7 +109,7 @@ namespace crmUI
             // добавитьToolStripMenuItem
             // 
             this.добавитьToolStripMenuItem.Name = "добавитьToolStripMenuItem";
-            this.добавитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.добавитьToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.добавитьToolStripMenuItem.Text = "Добавить";
             this.добавитьToolStripMenuItem.Click += new System.EventHandler(this.CustomerAddMenu_Click);
             // 
@@ -111,12 +120,12 @@ namespace crmUI
             this.чекToolStripMenuItem.Text = "Чек";
             this.чекToolStripMenuItem.Click += new System.EventHandler(this.BillMenu_Click);
             // 
-            // добавитьToolStripMenuItem2
+            // моделированиеToolStripMenuItem
             // 
-            this.добавитьToolStripMenuItem2.Name = "добавитьToolStripMenuItem2";
-            this.добавитьToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
-            this.добавитьToolStripMenuItem2.Text = "Добавить";
-            this.добавитьToolStripMenuItem2.Click += new System.EventHandler(this.ProductAddMenu_Click);
+            this.моделированиеToolStripMenuItem.Name = "моделированиеToolStripMenuItem";
+            this.моделированиеToolStripMenuItem.Size = new System.Drawing.Size(109, 20);
+            this.моделированиеToolStripMenuItem.Text = "Моделирование";
+            this.моделированиеToolStripMenuItem.Click += new System.EventHandler(this.ModelMenuItem_Click);
             // 
             // MainForm
             // 
@@ -146,6 +155,7 @@ namespace crmUI
         private System.Windows.Forms.ToolStripMenuItem добавитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem добавитьToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem добавитьToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem моделированиеToolStripMenuItem;
     }
 }
 

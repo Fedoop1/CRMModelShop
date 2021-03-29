@@ -9,11 +9,11 @@ namespace crmBI.Model
     public class CashDesk
     {
         Seller seller;
-        int number;
+        public int number;
         public int maxLenght;
         Queue<Cart> queue = new Queue<Cart>();
         public bool isModel;
-        int exitCount = 0;
+        public int exitCount = 0;
         CrmContext db = new CrmContext();
         public int Count => queue.Count;
         public event EventHandler<Bill> BillOut;

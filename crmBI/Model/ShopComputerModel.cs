@@ -17,11 +17,14 @@ namespace crmBI.Model
 
         List<Bill> Bills = new List<Bill>();
 
-        List<CashDesk> CashDesks = new List<CashDesk>();
+        public List<CashDesk> CashDesks = new List<CashDesk>();
 
         Queue<Seller> Sellers = new Queue<Seller>();
 
         Random rnd = new Random();
+
+        public int customerSpeed = 1000;
+        public int sellerSpeed = 1000;
 
         bool isWorking = true;
 
@@ -45,8 +48,8 @@ namespace crmBI.Model
         public void Start()
         {
             isWorking = true;
-            Task.Run(() => CreateCart(25, 1000));
-            var deskTasks = CashDesks.Select(c => new Task(() => CashDeskWork(c, 1000)));
+            Task.Run(() => CreateCart(15, customerSpeed));
+            var deskTasks = CashDesks.Select(c => new Task(() => CashDeskWork(c, sellerSpeed)));
 
             foreach (var task in deskTasks)
             {

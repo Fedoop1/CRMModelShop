@@ -78,5 +78,11 @@ namespace crmUI
                 database.SaveChanges();
             }
         }
+
+        private void ModelMenuItem_Click(object sender, EventArgs e)
+        {
+            var ModelForm = new ModelForm();
+            ModelForm.Show();
+        }
     }
 }
