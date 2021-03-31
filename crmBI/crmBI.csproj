@@ -55,6 +55,10 @@
     <Compile Include="Migrations\202103121417174_First.designer.cs">
       <DependentUpon>202103121417174_First.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103311341483_march.cs" />
+    <Compile Include="Migrations\202103311341483_march.designer.cs">
+      <DependentUpon>202103311341483_march.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Bill.cs" />
     <Compile Include="Model\Cart.cs" />
@@ -75,6 +79,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202103121417174_First.resx">
       <DependentUpon>202103121417174_First.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103311341483_march.resx">
+      <DependentUpon>202103311341483_march.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

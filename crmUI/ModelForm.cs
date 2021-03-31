@@ -67,5 +67,10 @@ namespace crmUI
             StartBtn.Enabled = true;
             StopBtn.Enabled = false;
         }
+
+        private void ModelForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            computerModel.Stop();
+        }
     }
 }

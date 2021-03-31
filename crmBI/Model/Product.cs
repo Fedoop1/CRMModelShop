@@ -16,7 +16,7 @@ namespace crmBI
         public ICollection<Sell> Sells { get; set; }
         public override string ToString()
         {
-            return $"Name: {Name}.\nPrice: {Price}.";
+            return $"{Name} - {Price}руб.";
         }
 
         public override int GetHashCode()

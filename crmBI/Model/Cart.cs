@@ -10,6 +10,7 @@ namespace crmBI.Model
     public class Cart : IEnumerable
     {
         public Customer Customer;
+        public decimal sum => GetProducts().Sum(x => x.Price);
 
         public Dictionary<Product, int> products = new Dictionary<Product, int>();
         public Cart(Customer customer)

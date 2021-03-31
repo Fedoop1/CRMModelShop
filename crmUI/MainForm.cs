@@ -15,11 +15,17 @@ namespace crmUI
 {
     public partial class MainForm : Form
     {
-        private CrmContext database;
+        CrmContext database;
+        Customer customer;
+        Cart cart;
+        CashDesk desk;
+        bool isLogin = false;
         public MainForm()
         {
             InitializeComponent();
             database = new CrmContext();
+            cart = new Cart(customer);
+            desk = new CashDesk(database.Sellers.FirstOrDefault(), 1);
         }
 
         private void ProductMenu_Click(object sender, EventArgs e)
@@ -83,6 +89,80 @@ namespace crmUI
         {
             var ModelForm = new ModelForm();
             ModelForm.Show();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            Task.Run(() =>
+            {
+                productBox.Invoke((Action)delegate { UpdateBoxed(); productBox.Items.AddRange(database.Products.ToArray()); });
+
+            });
+        }
+
+        private void UpdateBoxed()
+        {
+            cartBox.Items.Clear();
+            cartBox.Items.AddRange(cart.GetProducts().ToArray());
+            sumLabel.Text = $"Sum: {cart.sum} руб.";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Task.Run(() =>
+            {
+                productBox.Invoke((Action)delegate { UpdateBoxed(); productBox.Items.Clear(); productBox.Items.AddRange(database.Products.ToArray()); });
+            });
+
+        }
+
+        private void productBox_DoubleClick(object sender, EventArgs e)
+        {
+            if(productBox.SelectedItem is Product product)
+            {
+                cart.Add(product);
+                UpdateBoxed();
+            }
+        }
+
+        private void loginLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if(isLogin)
+            {
+                isLogin = false;
+                loginLabel.Text = "Clicl here, to login";
+                BuyButton.Enabled = false;
+            }
+            else
+            {
+                var loginform = new LoginForm();
+                loginform.ShowDialog();
+
+                if(loginform.DialogResult == DialogResult.OK)
+                {
+                    Customer newcustomer = database.Customers.FirstOrDefault(c => c.Name.Equals(loginform.customer.Name));
+
+                    if(newcustomer == null)
+                    {
+                        customer = new Customer() { Name = loginform.customer.Name };
+                    }
+                    else
+                    {
+                        customer = newcustomer;
+                    }
+
+                    MessageBox.Show("Вы успешно авторизовались!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    loginLabel.Text = $"Welcome, {customer.Name}.";
+                    isLogin = true;
+                    BuyButton.Enabled = true;
+                    database.Customers.Add(customer);
+                    database.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("При авторизации произошла ошибка!", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
