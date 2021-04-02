@@ -101,6 +101,11 @@ namespace crmUI
             // numericCount
             // 
             this.numericCount.Location = new System.Drawing.Point(109, 146);
+            this.numericCount.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numericCount.Name = "numericCount";
             this.numericCount.Size = new System.Drawing.Size(138, 20);
             this.numericCount.TabIndex = 6;

@@ -41,7 +41,7 @@ namespace crmBI.Model
 
             for (int cashDesk = 0; cashDesk < 3; cashDesk++)
             {
-                CashDesks.Add(new CashDesk(Sellers.Dequeue(), CashDesks.Count) { isModel = true, maxLenght = 20 });
+                CashDesks.Add(new CashDesk(Sellers.Dequeue(), CashDesks.Count, null) { isModel = true, maxLenght = 20 });
             }
         }
 

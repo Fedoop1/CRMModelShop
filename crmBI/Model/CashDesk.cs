@@ -10,18 +10,19 @@ namespace crmBI.Model
     {
         Seller seller;
         public int number;
-        public int maxLenght;
+        public int maxLenght = 10;
         Queue<Cart> queue = new Queue<Cart>();
         public bool isModel;
         public int exitCount = 0;
-        CrmContext db = new CrmContext();
+        CrmContext db;
         public int Count => queue.Count;
         public event EventHandler<Bill> BillOut;
 
-        public CashDesk(Seller seller, int number)
+        public CashDesk(Seller seller, int number, CrmContext context)
         {
             this.seller = seller;
             this.number = number;
+            this.db = context;
         }
         public void Enqueue(Cart cart)
         {

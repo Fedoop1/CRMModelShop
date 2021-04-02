@@ -28,7 +28,10 @@ namespace crmUI
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if (seller is null) new Seller { Name = nameBox.Text };
+            if (seller is null) 
+            { 
+                seller = new Seller { Name = nameBox.Text }; 
+            }
             else
             {
                 seller.Name = nameBox.Text;

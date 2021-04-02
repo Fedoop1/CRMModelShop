@@ -25,7 +25,7 @@ namespace crmUI
             InitializeComponent();
             database = new CrmContext();
             cart = new Cart(customer);
-            desk = new CashDesk(database.Sellers.FirstOrDefault(), 1);
+            desk = new CashDesk(database.Sellers.FirstOrDefault(), 1, database) { isModel = false };
         }
 
         private void ProductMenu_Click(object sender, EventArgs e)
@@ -145,6 +145,8 @@ namespace crmUI
                     if(newcustomer == null)
                     {
                         customer = new Customer() { Name = loginform.customer.Name };
+                        database.Customers.Add(customer);
+                        database.SaveChanges();
                     }
                     else
                     {
@@ -155,13 +157,30 @@ namespace crmUI
                     loginLabel.Text = $"Welcome, {customer.Name}.";
                     isLogin = true;
                     BuyButton.Enabled = true;
-                    database.Customers.Add(customer);
-                    database.SaveChanges();
+                    cart.Customer = customer;
                 }
                 else
                 {
                     MessageBox.Show("При авторизации произошла ошибка!", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void BuyButton_Click(object sender, EventArgs e)
+        {
+            if(isLogin)
+            {
+                desk.Enqueue(cart);
+                decimal sum = desk.Dequeue();
+
+                cart = new Cart(customer);
+                UpdateBoxed();
+
+                MessageBox.Show($"Покупка успешно проведена. Сумма покупки: {sum} руб.", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show($"Вы не авторизованы!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }
